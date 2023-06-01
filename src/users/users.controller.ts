@@ -1,7 +1,8 @@
-import { Body, Controller, Header, HttpCode, HttpStatus, Post, Request, UseGuards } from '@nestjs/common';
+import { Body, Controller, Get, Header, HttpCode, HttpStatus, Post, Request, UseGuards } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { createUserDto } from './dto/create-user.dt';
 import { LocalAuthGuard } from 'src/auth/local.auth.guard';
+import { AuthenticatedGuard } from 'src/auth/authenticated.guard';
 
 @Controller('users')
 export class UsersController {
@@ -20,7 +21,7 @@ export class UsersController {
     }
 
     //!Метод login
-    @Post('/login')    //префикс "signup"  //*URL-(users/login)
+    @Post('/login')    //префикс "login"  //*URL-(users/login)
     @UseGuards(LocalAuthGuard) //!Когда мы будем делать логин, вызывется наш localAuthGuard
     @HttpCode(HttpStatus.OK)   //будем возвращать код состояния HTTP 200 OK.
     login(@Request() req) {   //*Достаём данные из Request (отправляя с фронта)
@@ -28,4 +29,11 @@ export class UsersController {
         return { user: req.user, msg: 'Logged in' }
     }
 
+    //!Метод loginСheck
+    @Get('/login-check')    //префикс "login-check"  //*URL-(users/login-check)
+    @UseGuards(AuthenticatedGuard) //!Когда мы будем делать логин, вызывется наш AuthenticatedGuard
+    loginCheck(@Request() req) {   //*Достаём данные из Request (отправляя с фронта)
+        //Если пользователь валидный
+        return req.user;
+    }
 }
