@@ -45,6 +45,7 @@ export class UsersService {
         user.username = createUserDto.username;
         user.email = createUserDto.email;
         user.password = hashedPassword;
+        user.role = createUserDto.role;
 
         return user.save(); //*Сохраняем user в БД
     }

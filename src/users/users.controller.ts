@@ -12,6 +12,9 @@ export class UsersController {
     @Header('Content-type', 'application/json')   //устанавливает заголовок Content-Type со значением application/json
 
     createUser(@Body() createUserDto: createUserDto){   //*Достаём данные из Body (отправляя с фронта)
-        return this.userService.create(createUserDto)   //*create- метод из класса UsersService
+        return this.userService.create({    //*create- метод из класса UsersService
+            ...createUserDto, // Распаковываем объект createUserDto
+            role: createUserDto.role || 'USER', // Устанавливаем значение по умолчанию, если role не указано
+        })   
     }
 }

@@ -8,6 +8,6 @@ export class User extends Model{
     password: string;
     @Column
     email: string;
-    @Column
+    @Column({ defaultValue: 'USER' }) // Установка значения по умолчанию
     role: string;
 }

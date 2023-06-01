@@ -9,4 +9,6 @@ export class createUserDto {
     
     @IsNotEmpty()
     readonly email: string;
+
+    readonly role: string = 'USER'; // Установка значения по умолчанию
 }
