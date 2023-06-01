@@ -28,9 +28,10 @@ export class AuthService {
         //*Если и пользователь и пароль правильный, то...
         if(user && isPasswordValid){
             return{
-                userId = user.id,
-                userName = user.username,
-                email = user.email
+                userId: user.id,
+                userName: user.username,
+                email: user.email,
+                role: user.role
             }
         }
 
