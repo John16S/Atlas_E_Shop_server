@@ -30,10 +30,18 @@ export class UsersController {
     }
 
     //!Метод loginСheck
-    @Get('/login-check')    //префикс "login-check"  //*URL-(users/login-check)
+    @Get('/loginCheck')    //префикс "loginCheck"  //*URL-(users/loginCheck)
     @UseGuards(AuthenticatedGuard) //!Когда мы будем делать логин, вызывется наш AuthenticatedGuard
     loginCheck(@Request() req) {   //*Достаём данные из Request (отправляя с фронта)
-        //Если пользователь валидный
+        //Если пользователь залогинился
         return req.user;
+    }
+
+    //!Метод logout
+    @Get('/logout')    //префикс "logout"  //*URL-(users/logout)
+    logout(@Request() req) {   //*Достаём данные из Request (отправляя с фронта)
+        //Уничтожаем сессию
+        req.session.destroy();
+        return {msg: 'Logged out, session has ended'};
     }
 }
