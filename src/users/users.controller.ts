@@ -3,6 +3,8 @@ import { UsersService } from './users.service';
 import { createUserDto } from './dto/create-user.dt';
 import { LocalAuthGuard } from 'src/auth/local.auth.guard';
 import { AuthenticatedGuard } from 'src/auth/authenticated.guard';
+import { ApiBody, ApiOkResponse } from '@nestjs/swagger';
+import { LoginCheckResponse, LoginUserRequest, LoginUserResponse, LogoutUserResponse, SignupResponse } from './types/file';
 
 @Controller('users')
 export class UsersController {
@@ -10,6 +12,7 @@ export class UsersController {
     constructor(private readonly userService: UsersService){}   //задаём UsersService чтоб использовать его методы
 
     //!Метод createUser
+    @ApiOkResponse({ type: SignupResponse}) //Для документации Swagger
     @Post('/signup')    //префикс "signup"  //*URL-(users/signup)
     @HttpCode(HttpStatus.CREATED)   //будем возвращать код состояния HTTP 201 Created.
     @Header('Content-type', 'application/json')   //устанавливает заголовок Content-Type со значением application/json
@@ -21,6 +24,8 @@ export class UsersController {
     }
 
     //!Метод login
+    @ApiBody({ type: LoginUserRequest}) //Для документации Swagger
+    @ApiOkResponse({ type: LoginUserResponse}) //Для документации Swagger
     @Post('/login')    //префикс "login"  //*URL-(users/login)
     @UseGuards(LocalAuthGuard) //!Когда мы будем делать логин, вызывется наш localAuthGuard
     @HttpCode(HttpStatus.OK)   //будем возвращать код состояния HTTP 200 OK.
@@ -30,6 +35,7 @@ export class UsersController {
     }
 
     //!Метод loginСheck
+    @ApiOkResponse({ type: LoginCheckResponse}) //Для документации Swagger
     @Get('/loginCheck')    //префикс "loginCheck"  //*URL-(users/loginCheck)
     @UseGuards(AuthenticatedGuard) //!Когда мы будем делать логин, вызывется наш AuthenticatedGuard
     loginCheck(@Request() req) {   //*Достаём данные из Request (отправляя с фронта)
@@ -38,6 +44,7 @@ export class UsersController {
     }
 
     //!Метод logout
+    @ApiOkResponse({ type: LogoutUserResponse}) //Для документации Swagger
     @Get('/logout')    //префикс "logout"  //*URL-(users/logout)
     logout(@Request() req) {   //*Достаём данные из Request (отправляя с фронта)
         //Уничтожаем сессию

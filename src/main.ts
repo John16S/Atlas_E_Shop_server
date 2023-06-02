@@ -2,6 +2,7 @@ import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import * as session from 'express-session'
 import * as passport from 'passport'
+import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
@@ -14,6 +15,17 @@ async function bootstrap() {
   }))
   app.use(passport.initialize());
   app.use(passport.session());  //Регистрируем session через passport
+
+  //*Документация Swagger
+  const config = new DocumentBuilder()
+    .setTitle('Атлас - магазин одежда для всей семьи')
+    .setDescription('api documentation')
+    .setVersion('1.0')
+    .addTag('api')
+    .build();
+  const document = SwaggerModule.createDocument(app, config);
+  SwaggerModule.setup('swagDocumentation', app, document);  //! URL (localhost:3000/swagDocumentation)
+
 
 
   await app.listen(3000);
