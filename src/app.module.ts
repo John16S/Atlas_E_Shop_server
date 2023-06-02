@@ -5,6 +5,7 @@ import { ConfigModule } from '@nestjs/config';
 import { SequelizeConfigService } from './config/sequelizConfig.service';
 import { databaseConfig } from './config/configuration';
 import { AuthModule } from './auth/auth.module';
+import { GoodsModule } from './goods/goods.module';
 
 @Module({
   imports: [
@@ -18,9 +19,11 @@ import { AuthModule } from './auth/auth.module';
       load: [databaseConfig], //наш databaseConfig из configuration.ts
     }),
     
-    UsersModule,
+    UsersModule,  // Модуль пользователей
     
-    AuthModule,
+    AuthModule,   // Модуль для авторизации
+    
+    GoodsModule,  // Модуль товаров
   ],
 })
 export class AppModule {}
