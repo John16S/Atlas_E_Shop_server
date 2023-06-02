@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     quantity: DataTypes.INTEGER,
     category: DataTypes.STRING,
     subcategory: DataTypes.STRING,
-    bestsellers: DataTypes.BOOLEAN,
+    bestseller: DataTypes.BOOLEAN,
     new: DataTypes.BOOLEAN,
   }, 
   {

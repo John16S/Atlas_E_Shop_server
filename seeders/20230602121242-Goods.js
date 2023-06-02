@@ -28,7 +28,7 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     return queryInterface.bulkInsert('Goods', 
       //Создаём массив где будут ~100 записей
-      [...Array(100)].map(() => ({
+      [...Array(50)].map(() => ({
         name: faker.lorem.sentence(2),
         description: faker.lorem.sentence(10),
         price: faker.random.numeric(4),
@@ -50,7 +50,7 @@ module.exports = {
           subcategoryArray[
             Math.floor(Math.random() * subcategoryArray.length)
           ],
-        bestsellers: faker.datatype.boolean(), 
+        bestseller: faker.datatype.boolean(), 
         new: faker.datatype.boolean(),
         createdAt: new Date(),
         updatedAt: new Date()

@@ -33,7 +33,7 @@ module.exports = {
       subcategory: {
         type: Sequelize.STRING
       },
-      bestsellers: {
+      bestseller: {
         type: Sequelize.BOOLEAN
       },
       new: {

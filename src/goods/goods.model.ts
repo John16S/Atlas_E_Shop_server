@@ -20,8 +20,7 @@ export class Goods extends Model{
     @Column
     subcategory: string;
     @Column({ defaultValue: 'false' }) // Установка значения по умолчанию
-    bestsellers: boolean;
+    bestseller: boolean;
     @Column({ defaultValue: 'false' }) // Установка значения по умолчанию
     new: boolean;
-    
 }
