@@ -2,24 +2,33 @@ import { INestApplication } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
 import * as bcrypt from 'bcrypt';
 import * as request from 'supertest';
+import * as session from 'express-session';
+import * as passport from 'passport';
 import { SequelizeModule } from '@nestjs/sequelize';
 import { Test, TestingModule } from '@nestjs/testing';
 import { databaseConfig } from 'src/config/configuration';
 import { SequelizeConfigService } from 'src/config/sequelizeConfig.service';
 import { User } from 'src/users/users.model';
+import { PaymentModule } from 'src/payment/payment.module';
 import { AuthModule } from 'src/auth/auth.module';
-import { AuthService } from 'src/auth/auth.service';
 
 const mockedUser = {
-  username: 'John',
-  email: 'john@gmail.com',
-  password: 'john123',
+  username: 'Test',
+  email: 'test@gmail.com',
+  password: 'test123',
   role: 'USER',
 };
 
-describe('Auth Service', () => {
+const mockedPay = {
+  status: 'pending',
+  amount: {
+    value: '100.00',
+    currency: 'RUB',
+  },
+};
+
+describe('Payment Controller', () => {
   let app: INestApplication;
-  let authService: AuthService;
 
   beforeEach(async () => {
     const testModule: TestingModule = await Test.createTestingModule({
@@ -31,15 +40,26 @@ describe('Auth Service', () => {
         ConfigModule.forRoot({
           load: [databaseConfig],
         }),
-        AuthModule,
+        PaymentModule,
+        AuthModule
       ],
     }).compile();
 
-    authService = testModule.get<AuthService>(AuthService);
     app = testModule.createNestApplication();
+    app.use(
+      session({
+        secret: 'keyword',
+        resave: false,
+        saveUninitialized: false,
+      }),
+    );
+    app.use(passport.initialize());
+    app.use(passport.session());
+
     await app.init();
   });
 
+  //*Создаём тестового пользователя
   beforeEach(async () => {
     const user = new User();
     const hashedPassword = await bcrypt.hash(mockedUser.password, 10);
@@ -54,15 +74,20 @@ describe('Auth Service', () => {
     await User.destroy({ where: { username: mockedUser.username } });
   });
 
-  //*тест на validateUser
-  it('should validate user', async () => {
-    const user = await authService.validateUser(
-      mockedUser.username, 
-      mockedUser.password
-    );
+  //*тест для получении одного товара
+  it('should make payment', async () => {
+    const login = await request(app.getHttpServer())
+      .post('/users/login')
+      .send({ username: mockedUser.username, password: mockedUser.password });
 
-    expect(user.userName).toBe(mockedUser.username);
-    expect(user.email).toBe(mockedUser.email);
+    const response = await request(app.getHttpServer())
+      .post('/payment')
+      .send({ amount: 100 })
+      .set('Cookie', login.headers['set-cookie']);
+
+    expect(response.body.status).toEqual(mockedPay.status);
+    expect(response.body.amount).toEqual(mockedPay.amount);
 
   });
+
 });

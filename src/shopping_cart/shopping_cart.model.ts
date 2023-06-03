@@ -22,4 +22,5 @@ export class ShoppingCart extends Model{
     count: number;
     @Column({ defaultValue: 0 })
     totalPrice: number;
+  find: void;
 }

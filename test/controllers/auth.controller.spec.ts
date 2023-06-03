@@ -13,9 +13,9 @@ import { UsersModule } from 'src/users/users.module';
 import { AuthModule } from 'src/auth/auth.module';
 
 const mockedUser = {
-  username: 'John',
-  email: 'john@gmail.com',
-  password: 'john123',
+  username: 'Test',
+  email: 'test@gmail.com',
+  password: 'test123',
   role: 'USER',
 };
 
