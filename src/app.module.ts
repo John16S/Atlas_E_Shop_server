@@ -7,6 +7,7 @@ import { databaseConfig } from './config/configuration';
 import { AuthModule } from './auth/auth.module';
 import { GoodsModule } from './goods/goods.module';
 import { ShoppingCartModule } from './shopping_cart/shopping_cart.module';
+import { PaymentModule } from './payment/payment.module';
 
 @Module({
   imports: [
@@ -26,7 +27,9 @@ import { ShoppingCartModule } from './shopping_cart/shopping_cart.module';
     
     GoodsModule, // Модуль товаров
     
-    ShoppingCartModule,  
+    ShoppingCartModule, //Модуль корзины
+    
+    PaymentModule, //Модуль платежа
   ],
 })
 export class AppModule {}
