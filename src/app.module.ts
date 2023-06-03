@@ -6,6 +6,7 @@ import { SequelizeConfigService } from './config/sequelizConfig.service';
 import { databaseConfig } from './config/configuration';
 import { AuthModule } from './auth/auth.module';
 import { GoodsModule } from './goods/goods.module';
+import { ShoppingCartModule } from './shopping_cart/shopping_cart.module';
 
 @Module({
   imports: [
@@ -23,7 +24,9 @@ import { GoodsModule } from './goods/goods.module';
     
     AuthModule,   // Модуль для авторизации
     
-    GoodsModule,  // Модуль товаров
+    GoodsModule, // Модуль товаров
+    
+    ShoppingCartModule,  
   ],
 })
 export class AppModule {}
