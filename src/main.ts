@@ -16,6 +16,12 @@ async function bootstrap() {
   app.use(passport.initialize());
   app.use(passport.session());  //Регистрируем session через passport
 
+  app.enableCors({
+    credentials: true,
+    //*Указываем из каких доменах мы можем делать запрос на этот сервер
+    origin: ['http://localhost:3001']
+  })
+
   //*Документация Swagger
   const config = new DocumentBuilder()
     .setTitle('Атлас - магазин одежда для всей семьи')
