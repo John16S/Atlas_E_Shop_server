@@ -3,7 +3,6 @@ import { GoodsService } from './goods.service';
 import { AuthenticatedGuard } from 'src/auth/authenticated.guard';
 import { ApiBody, ApiOkResponse } from '@nestjs/swagger';
 import { FindOneResponse, GetBestsellersResponse, GetByNameRequest, GetByNameResponse, GetNewResponse, PaginateAndFilterResponse, SearchRequest, SearchResponse } from './types/file';
-import { ServerResponse } from 'http';
 
 @Controller('goods')
 export class GoodsController {

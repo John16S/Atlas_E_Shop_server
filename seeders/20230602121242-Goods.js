@@ -27,7 +27,7 @@ const sizeArray = [
 module.exports = {
   async up (queryInterface, Sequelize) {
     return queryInterface.bulkInsert('Goods', 
-      //Создаём массив где будут ~100 записей
+      //Создаём массив где будут ~50 записей
       [...Array(50)].map(() => ({
         name: faker.lorem.sentence(2),
         description: faker.lorem.sentence(10),
@@ -38,7 +38,7 @@ module.exports = {
           ],
         image: JSON.stringify(
           [...Array(4)].map(
-            () => `${faker.image.fashion()}?random=${faker.random.numeric(30)}`
+            () => `${faker.image.people()}?random=${faker.random.numeric(30)}`
             ),
           ),
         quantity: faker.random.numeric(2),

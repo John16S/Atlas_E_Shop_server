@@ -10,7 +10,7 @@ export class ShoppingCart extends Model{
     name: string;
     @Column({ defaultValue: 0 }) // Установка значения по умолчанию
     price: number;
-    @Column({ defaultValue: 'USER' }) // Установка значения по умолчанию
+    @Column({ defaultValue: 'XL' }) // Установка значения по умолчанию
     size: string;
     @Column
     image: string;  
@@ -22,5 +22,4 @@ export class ShoppingCart extends Model{
     count: number;
     @Column({ defaultValue: 0 })
     totalPrice: number;
-  find: void;
 }
