@@ -37,6 +37,7 @@ export class ShoppingCartService {
         cart.image = JSON.parse(good.image)[0]; //Массив картинок в БД парсим и берём первый
         cart.category = good.category;
         cart.subcategory = good.subcategory;
+        cart.quantity = good.quantity;
         //*cart.count = 0 - по умолчанию он равен 0, для него напишем отдельный метод ниже
         cart.totalPrice = good.price;   //изначально так, потом при увелечение элемента, будет прибавлятся это цена 
     

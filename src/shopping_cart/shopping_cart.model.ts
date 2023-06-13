@@ -18,6 +18,8 @@ export class ShoppingCart extends Model{
     category: string;
     @Column
     subcategory: string;
+    @Column
+    quantity: number;
     @Column({ defaultValue: 0 })
     count: number;
     @Column({ defaultValue: 0 })
