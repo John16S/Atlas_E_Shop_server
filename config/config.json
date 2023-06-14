@@ -1,26 +1,26 @@
 {
   "development": {
-    "username": "postgres",
-    "password": "root",
-    "database": "Atlas_E_Shop",
-    "host": "localhost",
-    "dialect": "postgres",
-    "port": 5432
+    "username": "freedb_freedb_atlasbd",
+    "password": "bQ2#B4mpEctGRVA",
+    "database": "freedb_atlasbd",
+    "host": "sql.freedb.tech",
+    "dialect": "mysql",
+    "port": 3306
   },
   "test": {
-    "username": "postgres",
-    "password": "root",
-    "database": "Atlas_E_Shop",
-    "host": "localhost",
-    "dialect": "postgres",
-    "port": 5432  
+    "username": "freedb_freedb_atlasbd",
+    "password": "bQ2#B4mpEctGRVA",
+    "database": "freedb_atlasbd",
+    "host": "sql.freedb.tech",
+    "dialect": "mysql",
+    "port": 3306
   },
   "production": {
-    "username": "postgres",
-    "password": "root",
-    "database": "Atlas_E_Shop",
-    "host": "localhost",
-    "dialect": "postgres",
-    "port": 5432  
+    "username": "freedb_freedb_atlasbd",
+    "password": "bQ2#B4mpEctGRVA",
+    "database": "freedb_atlasbd",
+    "host": "sql.freedb.tech",
+    "dialect": "mysql",
+    "port": 3306
   }
 }

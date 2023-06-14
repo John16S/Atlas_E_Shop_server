@@ -20,15 +20,15 @@ import { PaymentModule } from './payment/payment.module';
       //корневой config для nestjs
       load: [databaseConfig], //наш databaseConfig из configuration.ts
     }),
-    
-    UsersModule,  // Модуль пользователей
-    
-    AuthModule,   // Модуль для авторизации
-    
+
+    UsersModule, // Модуль пользователей
+
+    AuthModule, // Модуль для авторизации
+
     GoodsModule, // Модуль товаров
-    
+
     ShoppingCartModule, //Модуль корзины
-    
+
     PaymentModule, //Модуль платежа
   ],
 })

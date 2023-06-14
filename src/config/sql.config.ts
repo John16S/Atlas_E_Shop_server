@@ -5,7 +5,7 @@ import { Dialect } from 'sequelize';
 //функция registerAs (1 парам - token, 2 парам - callback) 
 export const sqlConfig = registerAs('database', () => ({    //зарегаем наш config как //!'database'
     //возвращаем объект с полями конфигурации
-    dialect: <Dialect>process.env.SQL_DIALECT || 'postgres',
+    dialect: <Dialect>process.env.SQL_DIALECT || 'mysql',
     logging: process.env.SQL_LOGGING === 'true' ? true : false, //чтобы вместо bool значение не попадалось строчка
     host: process.env.DATABASE_HOST,
     port: +process.env.DATABASE_PORT,   //указываем + чтобы было число
