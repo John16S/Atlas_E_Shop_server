@@ -19,7 +19,7 @@ async function bootstrap() {
   app.enableCors({
     credentials: true,
     //*Указываем из каких доменах мы можем делать запрос на этот сервер
-    origin: ['http://localhost:3001', 'https://atlas-e-shop-client.onrender.com']
+    origin: ['http://localhost:3000', 'https://atlas-e-shop-client.onrender.com']
   })
 
   //*Документация Swagger
