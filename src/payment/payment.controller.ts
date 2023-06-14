@@ -4,6 +4,7 @@ import { MakePaymentDto } from './dto/makePayment.dto';
 import { AuthenticatedGuard } from 'src/auth/authenticated.guard';
 import { ApiOkResponse } from '@nestjs/swagger';
 import { MakePaymentResponse } from './types/file';
+import { CheckPaymentDto } from './dto/check-payment.dto';
 
 @Controller('payment')
 export class PaymentController {
@@ -15,5 +16,12 @@ export class PaymentController {
     @Post()     //* URL (/payment)
     makePayment(@Body() makePaymentDto: MakePaymentDto){
         return this.paymentServic.makePayment(makePaymentDto);
+    }
+
+    //!Метод для проверки что платёж успешно прошел
+    @UseGuards(AuthenticatedGuard)
+    @Post('/info')
+    checkPayment(@Body() checkPaymentDto: CheckPaymentDto) {
+        return this.paymentServic.checkPayment(checkPaymentDto);
     }
 }
